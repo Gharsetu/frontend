@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Search, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { backend_url } from '../../config';
 
 const PropertySearchBar = ({ searchQuery, setSearchQuery, selectedMode }) => {
     const navigate = useNavigate()
@@ -22,7 +23,7 @@ const PropertySearchBar = ({ searchQuery, setSearchQuery, selectedMode }) => {
             setIsLoading(true);
             try {
                 const response = await fetch(
-                    `http://localhost:8080/api/v1/properties/searchArea?searchQuery=${encodeURIComponent(searchQuery)}`
+                    `${backend_url}/api/v1/properties/searchArea?searchQuery=${encodeURIComponent(searchQuery)}`
                 );
                 const data = await response.json();
                 setSearchResults(data);
